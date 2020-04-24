@@ -39,8 +39,8 @@ matrix:
     - cmake --build .
     - strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/x64/ $S3_PARAMS"
-    - "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/x64/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/x64/ $S3_PARAMS"
+    #- "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/x64/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux x64 - Wayland"
@@ -79,8 +79,8 @@ matrix:
     - cmake --build .
     - strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw_wayland.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/x64/libglfw_wayland.so $S3_PARAMS"
-    - "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/x64/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/x64/libglfw_wayland.so $S3_PARAMS"
+    #- "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/x64/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux arm32"
@@ -114,8 +114,8 @@ matrix:
     - cmake --build .
     - arm-linux-gnueabihf-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm32/ $S3_PARAMS"
-    - "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/arm32/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm32/ $S3_PARAMS"
+    #- "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/arm32/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux arm32 - Wayland"
@@ -155,8 +155,8 @@ matrix:
     - cmake --build .
     - arm-linux-gnueabihf-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw_wayland.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm32/libglfw_wayland.so $S3_PARAMS"
-    - "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/arm32/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm32/libglfw_wayland.so $S3_PARAMS"
+    #- "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/arm32/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux arm64"
@@ -190,8 +190,8 @@ matrix:
     - cmake --build .
     - aarch64-linux-gnu-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm64/ $S3_PARAMS"
-    - "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/arm64/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm64/ $S3_PARAMS"
+    #- "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/arm64/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux arm64 - Wayland"
@@ -231,8 +231,8 @@ matrix:
     - cmake --build .
     - aarch64-linux-gnu-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw_wayland.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm64/libglfw_wayland.so $S3_PARAMS"
-    - "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/arm64/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/arm64/libglfw_wayland.so $S3_PARAMS"
+    #- "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/arm64/ $S3_PARAMS"
 
     # -----------------
   - name: "Linux mips64"
@@ -264,8 +264,8 @@ matrix:
     - cmake --build .
     - mips64el-linux-gnuabi64-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/mips64/ $S3_PARAMS"
-    - "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/mips64/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/mips64/ $S3_PARAMS"
+    #- "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/mips64/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux mips64 - Wayland"
@@ -303,8 +303,8 @@ matrix:
     - cmake --build .
     - mips64el-linux-gnuabi64-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw_wayland.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/mips64/libglfw_wayland.so $S3_PARAMS"
-    - "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/mips64/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/mips64/libglfw_wayland.so $S3_PARAMS"
+    #- "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/mips64/ $S3_PARAMS"
   
   # -----------------
   - name: "Linux ppc64le"
@@ -338,8 +338,8 @@ matrix:
     - cmake --build .
     - powerpc64le-linux-gnu-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
-    - "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+    #- "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux ppc64le - Wayland"
@@ -379,8 +379,8 @@ matrix:
     - cmake --build .
     - powerpc64le-linux-gnu-strip src/libglfw.so
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw_wayland.so.git"
-    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/libglfw_wayland.so $S3_PARAMS"
-    - "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/libglfw_wayland.so $S3_PARAMS"
+    #- "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
 
   # -----------------
   - name: "macOS"
@@ -402,5 +402,5 @@ matrix:
     - cmake --build .
     - strip -u -r src/libglfw.dylib
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.dylib.git"
-    - "aws s3 cp src/libglfw.dylib s3://build.lwjgl.org/nightly/macosx/x64/ $S3_PARAMS"
-    - "aws s3 cp libglfw.dylib.git s3://build.lwjgl.org/nightly/macosx/x64/ $S3_PARAMS"
+    #- "aws s3 cp src/libglfw.dylib s3://build.lwjgl.org/nightly/macosx/x64/ $S3_PARAMS"
+    #- "aws s3 cp libglfw.dylib.git s3://build.lwjgl.org/nightly/macosx/x64/ $S3_PARAMS"
