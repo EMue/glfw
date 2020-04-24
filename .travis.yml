@@ -307,6 +307,82 @@ matrix:
     - "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/mips64/ $S3_PARAMS"
   
   # -----------------
+  - name: "Linux ppc64le"
+  # -----------------
+    dist: xenial
+    language: c
+    compiler: gcc
+
+    addons:
+      apt:
+        packages:
+        - cmake
+        - gcc-4.8-powerpc64le-linux-gnu
+        - libc6-dev-ppc64el-cross
+
+    before_install:
+    - pip install --user awscli
+    - export PATH=$PATH:$HOME/.local/bin
+    - sudo sed -i 's/deb http/deb [arch=amd64,i386] http/' /etc/apt/sources.list
+    - sudo grep "ubuntu.com/ubuntu" /etc/apt/sources.list | sudo tee /etc/apt/sources.list.d/ports.list
+    - sudo sed -i 's/amd64,i386/ppc64el,ppc64el/' /etc/apt/sources.list.d/ports.list
+    - sudo sed -i 's#http://.*/ubuntu#http://ports.ubuntu.com/ubuntu-ports#' /etc/apt/sources.list.d/ports.list
+    - sudo dpkg --add-architecture ppc64el
+    - sudo apt-get update || true
+    - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:ppc64el libxinerama-dev:ppc64el libxcursor-dev:ppc64el libxi-dev:ppc64el -o Dpkg::Options::="--force-overwrite"
+
+    script:
+    - mkdir build
+    - cd build
+    - "CC=powerpc64le-linux-gnu-gcc-4.8 cmake $GLFW_PARAMS -DCMAKE_C_FLAGS=\"-std=c99 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0\" .."
+    - cmake --build .
+    - powerpc64le-linux-gnu-strip src/libglfw.so
+    - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.so.git"
+    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+    - "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+
+  # -----------------
+  - name: "Linux ppc64le - Wayland"
+  # -----------------
+    dist: xenial
+    language: c
+    compiler: gcc
+
+    addons:
+      apt:
+        packages:
+        - cmake
+        - gcc-4.8-powerpc64le-linux-gnu
+        - libc6-dev-ppc64el-cross
+
+    before_install:
+    - pip install --user awscli
+    - export PATH=$PATH:$HOME/.local/bin
+    - sudo sed -i 's/deb http/deb [arch=amd64,i386] http/' /etc/apt/sources.list
+    - sudo grep "ubuntu.com/ubuntu" /etc/apt/sources.list | sudo tee /etc/apt/sources.list.d/ports.list
+    - sudo sed -i 's/amd64,i386/ppc64el,ppc64el/' /etc/apt/sources.list.d/ports.list
+    - sudo sed -i 's#http://.*/ubuntu#http://ports.ubuntu.com/ubuntu-ports#' /etc/apt/sources.list.d/ports.list
+    - sudo dpkg --add-architecture ppc64el
+    - sudo apt-get update || true
+    - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:ppc64el libxinerama-dev:ppc64el libxcursor-dev:ppc64el libxi-dev:ppc64el libwayland-dev:ppc64el libxkbcommon-dev:ppc64el libegl1-mesa-dev:ppc64el -o Dpkg::Options::="--force-overwrite"
+
+    script:
+    - mkdir build
+    - cd build
+    - wget https://mirrors.kernel.org/ubuntu/pool/universe/e/extra-cmake-modules/extra-cmake-modules_5.62.0-0ubuntu1_amd64.deb
+    - sudo dpkg -i extra-cmake-modules_5.62.0-0ubuntu1_amd64.deb
+    - git clone git://anongit.freedesktop.org/wayland/wayland-protocols
+    - pushd wayland-protocols;
+    - git checkout 1.15 && ./autogen.sh --prefix=/usr && make && sudo make install;
+    - popd;
+    - "CC=powerpc64le-linux-gnu-gcc-4.8 cmake -DGLFW_USE_WAYLAND=ON $GLFW_PARAMS -DCMAKE_C_FLAGS=\"-std=c99 -D_POSIX_C_SOURCE=199309L -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0\" .."
+    - cmake --build .
+    - powerpc64le-linux-gnu-strip src/libglfw.so
+    - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw_wayland.so.git"
+    - "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/libglfw_wayland.so $S3_PARAMS"
+    - "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+
+  # -----------------
   - name: "macOS"
   # -----------------
     language: objective-c
