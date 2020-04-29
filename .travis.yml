@@ -31,6 +31,7 @@ matrix:
     before_install:
     - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -65,6 +66,7 @@ matrix:
     before_install:
     - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -106,6 +108,7 @@ matrix:
     - sudo dpkg --add-architecture armhf
     - sudo apt-get update || true
     - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:armhf libxinerama-dev:armhf libxcursor-dev:armhf libxi-dev:armhf -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -141,6 +144,7 @@ matrix:
     - sudo dpkg --add-architecture armhf
     - sudo apt-get update || true
     - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:armhf libxinerama-dev:armhf libxcursor-dev:armhf libxi-dev:armhf libwayland-dev:armhf libxkbcommon-dev:armhf libegl1-mesa-dev:armhf -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -182,6 +186,7 @@ matrix:
     - sudo dpkg --add-architecture arm64
     - sudo apt-get update || true
     - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:arm64 libxinerama-dev:arm64 libxcursor-dev:arm64 libxi-dev:arm64 -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -217,6 +222,7 @@ matrix:
     - sudo dpkg --add-architecture arm64
     - sudo apt-get update || true
     - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:arm64 libxinerama-dev:arm64 libxcursor-dev:arm64 libxi-dev:arm64 libwayland-dev:arm64 libxkbcommon-dev:arm64 libegl1-mesa-dev:arm64 -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -256,6 +262,7 @@ matrix:
     - sudo dpkg --add-architecture mips64el
     - sudo apt-get update || true
     - sudo apt-get -yq --allow-unauthenticated --no-install-suggests --no-install-recommends install libxrandr-dev:mips64el libxinerama-dev:mips64el libxcursor-dev:mips64el libxi-dev:mips64el -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -289,6 +296,7 @@ matrix:
     - sudo dpkg --add-architecture mips64el
     - sudo apt-get update || true
     - sudo apt-get -yq --allow-unauthenticated  --no-install-suggests --no-install-recommends install libegl1-mesa:mips64el libwayland-egl1-mesa:mips64el libdrm-dev:mips64el libdrm-amdgpu1:mips64el libxrandr-dev:mips64el libxinerama-dev:mips64el libxcursor-dev:mips64el libxi-dev:mips64el libwayland-dev:mips64el libxkbcommon-dev:mips64el libegl1-mesa-dev:mips64el -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -330,6 +338,7 @@ matrix:
     - sudo dpkg --add-architecture ppc64el
     - sudo apt-get update || true
     - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:ppc64el libxinerama-dev:ppc64el libxcursor-dev:ppc64el libxi-dev:ppc64el -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -365,6 +374,7 @@ matrix:
     - sudo dpkg --add-architecture ppc64el
     - sudo apt-get update || true
     - sudo apt-get -yq --no-install-suggests --no-install-recommends install libxrandr-dev:ppc64el libxinerama-dev:ppc64el libxcursor-dev:ppc64el libxi-dev:ppc64el libwayland-dev:ppc64el libxkbcommon-dev:ppc64el libegl1-mesa-dev:ppc64el -o Dpkg::Options::="--force-overwrite"
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
     - mkdir build
@@ -391,6 +401,7 @@ matrix:
 
     before_install:
     - brew update
+    - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     install:
     - brew install awscli
