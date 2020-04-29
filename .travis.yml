@@ -341,6 +341,9 @@ matrix:
     - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
+    - eval "$(ssh-agent -s)"
+    - chmod 600 .travis/id_rsa_deploy_travis
+    - ssh-add .travis/id_rsa_deploy_travis
     - mkdir build
     - cd build
     - "CC=powerpc64le-linux-gnu-gcc-4.8 cmake $GLFW_PARAMS -DCMAKE_C_FLAGS=\"-std=c99 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0\" .."
@@ -349,6 +352,19 @@ matrix:
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw.so.git"
     #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
     #- "aws s3 cp libglfw.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+    - mkdir -p ../deploy
+    - cp src/libglfw.so ../deploy/
+    - cp libglfw.so.git ../deploy/
+    - cd ../deploy
+    - git init
+    - git remote add origin git@github.com:EMue/lwjgl3-bin.git
+    - git fetch origin 0449e44c07e2bdf09e79f21c75a92f7d94b0e496
+    - git checkout 0449e44c07e2bdf09e79f21c75a92f7d94b0e496
+    - git branch ppc64le_nightly_glfw
+    - git checkout ppc64le_nightly_glfw
+    - git add libglfw.so libglfw.so.git
+    - git commit -m "Deploy glfw from Travis CI."
+    - git push --force origin ppc64le_nightly_glfw
 
   # -----------------
   - name: "Linux ppc64le - Wayland"
@@ -377,6 +393,9 @@ matrix:
     - openssl aes-256-cbc -K $encrypted_3b8cb6da0fbe_key -iv $encrypted_3b8cb6da0fbe_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
+    - eval "$(ssh-agent -s)"
+    - chmod 600 .travis/id_rsa_deploy_travis
+    - ssh-add .travis/id_rsa_deploy_travis
     - mkdir build
     - cd build
     - wget https://mirrors.kernel.org/ubuntu/pool/universe/e/extra-cmake-modules/extra-cmake-modules_5.62.0-0ubuntu1_amd64.deb
@@ -391,6 +410,19 @@ matrix:
     - "git log --first-parent --pretty=format:%H HEAD~2..HEAD~1 > libglfw_wayland.so.git"
     #- "aws s3 cp src/libglfw.so s3://build.lwjgl.org/nightly/linux/ppc64le/libglfw_wayland.so $S3_PARAMS"
     #- "aws s3 cp libglfw_wayland.so.git s3://build.lwjgl.org/nightly/linux/ppc64le/ $S3_PARAMS"
+    - mkdir -p ../deploy
+    - cp src/libglfw.so ../deploy/libglfw_wayland.so
+    - cp libglfw_wayland.so.git ../deploy/
+    - cd ../deploy
+    - git init
+    - git remote add origin git@github.com:EMue/lwjgl3-bin.git
+    - git fetch origin 0449e44c07e2bdf09e79f21c75a92f7d94b0e496
+    - git checkout 0449e44c07e2bdf09e79f21c75a92f7d94b0e496
+    - git branch ppc64le_nightly_glfw_wayland
+    - git checkout ppc64le_nightly_glfw_wayland
+    - git add libglfw_wayland.so libglfw_wayland.so.git
+    - git commit -m "Deploy glfw (Wayland) from Travis CI."
+    - git push --force origin ppc64le_nightly_glfw_wayland
 
   # -----------------
   - name: "macOS"
